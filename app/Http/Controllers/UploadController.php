@@ -37,7 +37,7 @@ class UploadController extends Controller
             $new_filename = $upload_dir.'/'. $filename;
 
             $upload = $uploader->upload($request->file, $new_filename, '');
-            Session::flash('flash_message', $new_filename);
+            Session::flash('flash_message', 'Image upload status: '.$upload);
             $beautician->images()->save(new BeauticianImage(['reference' => $filename]));
         }
 
