@@ -7,6 +7,7 @@ use App\BeauticianImage;
 use App\Beautician;
 
 use App\Helpers\Uploader;
+use Session;
 
 class UploadController extends Controller
 {
@@ -36,7 +37,7 @@ class UploadController extends Controller
             $new_filename = $upload_dir.'/'. $filename;
 
             $upload = $uploader->upload($request->file, $new_filename, '');
-
+            Session::flash('flash_message', $new_filename);
             $beautician->images()->save(new BeauticianImage(['reference' => $filename]));
         }
 
