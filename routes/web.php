@@ -20,3 +20,5 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index');
 Route::get('/home', 'UploadController@create');
 Route::post('/upload', 'UploadController@ImageUpload');
+
+Route::resource('images', 'ImagesController');
