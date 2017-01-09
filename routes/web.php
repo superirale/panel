@@ -23,3 +23,4 @@ Route::post('/upload', 'UploadController@ImageUpload');
 
 Route::resource('images', 'ImagesController');
 Route::resource('services', 'ServicesController');
+Route::resource('user-services', 'UserServicesController');
