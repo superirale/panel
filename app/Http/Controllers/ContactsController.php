@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 class ContactsController extends ApiController
 {
 
-	public function all()
+	public function index()
 	{
 		$contacts = Contact::all();
 		return response()->json($contacts);
 	}
 
-	public function read($id)
+	public function show($id)
     {
         $Contact = Contact::find($id);
 
         return response()->json($Contact);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $contact = Contact::create($request->all());
 
