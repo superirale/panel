@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
+use App\Contact;
 use Illuminate\Http\Request;
 
-class ContactsController extends ApiController
+class ContactsController extends Controller
 {
 
 	public function index()
