@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class List extends Model
+class ContactList extends Model
 {
     /**
      * The database table used by the model.
@@ -27,5 +27,5 @@ class List extends Model
      */
     protected $fillable = ['name'];
 
-    
+
 }

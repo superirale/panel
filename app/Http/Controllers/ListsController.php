@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\List;
+use App\ContactList;
 use Illuminate\Http\Request;
 use Session;
 
-class ListsController extends Controller
+class ContactListsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class ListsController extends Controller
      */
     public function index()
     {
-        $lists = List::paginate(25);
+        $lists = ContactList::paginate(25);
 
         return view('lists.index', compact('lists'));
     }
@@ -46,8 +46,8 @@ class ListsController extends Controller
 			'name' => 'required'
 		]);
         $requestData = $request->all();
-        
-        List::create($requestData);
+
+        ContactList::create($requestData);
 
         Session::flash('flash_message', 'List added!');
 
@@ -63,7 +63,7 @@ class ListsController extends Controller
      */
     public function show($id)
     {
-        $list = List::findOrFail($id);
+        $list = ContactList::findOrFail($id);
 
         return view('lists.show', compact('list'));
     }
@@ -77,7 +77,7 @@ class ListsController extends Controller
      */
     public function edit($id)
     {
-        $list = List::findOrFail($id);
+        $list = ContactList::findOrFail($id);
 
         return view('lists.edit', compact('list'));
     }
@@ -96,8 +96,8 @@ class ListsController extends Controller
 			'name' => 'required'
 		]);
         $requestData = $request->all();
-        
-        $list = List::findOrFail($id);
+
+        $list = ContactList::findOrFail($id);
         $list->update($requestData);
 
         Session::flash('flash_message', 'List updated!');
@@ -114,7 +114,7 @@ class ListsController extends Controller
      */
     public function destroy($id)
     {
-        List::destroy($id);
+        ContactList::destroy($id);
 
         Session::flash('flash_message', 'List deleted!');
 
