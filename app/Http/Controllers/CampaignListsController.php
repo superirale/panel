@@ -17,21 +17,11 @@ class CampaignListsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index($campagin_id)
+    public function index($campaign_id)
     {
         $lists = ContactList::all()->toJson();
-        // dd($lists);
-        return view('campaign-lists.index', compact('lists'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('campaign-lists.create');
+        return view('campaign-lists.index', compact('lists', 'campaign_id'));
     }
 
     /**
@@ -43,70 +33,28 @@ class CampaignListsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-			'campaign_id' => 'required|integer',
-			'list_id' => 'required|integer'
-		]);
+
         $requestData = $request->all();
 
-        CampaignList::create($requestData);
+        for ($i=0; $i < count($requestData['ids']); $i++) {
 
-        Session::flash('flash_message', 'CampaignList added!');
+            $list = ContactList::find($requestData['ids'][$i]);
 
-        return redirect('campaign-lists');
+            if(!isset($list->id)){
+                $list = ContactList::create(['name' => $requestData['ids'][$i]]);
+            }
+
+            CampaignList::create([
+                    'list_id' => $list->id,
+                    'campaign_id' => $requestData['campaign_id']
+                ]);
+        }
+
+
+        return response()->json(['status' => 'success']);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $campaignlist = CampaignList::findOrFail($id);
-
-        return view('campaign-lists.show', compact('campaignlist'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $campaignlist = CampaignList::findOrFail($id);
-
-        return view('campaign-lists.edit', compact('campaignlist'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update($id, Request $request)
-    {
-        $this->validate($request, [
-			'campaign_id' => 'required|integer',
-			'list_id' => 'required|integer'
-		]);
-        $requestData = $request->all();
-
-        $campaignlist = CampaignList::findOrFail($id);
-        $campaignlist->update($requestData);
-
-        Session::flash('flash_message', 'CampaignList updated!');
-
-        return redirect('campaign-lists');
-    }
 
     /**
      * Remove the specified resource from storage.

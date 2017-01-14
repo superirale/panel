@@ -60,7 +60,7 @@
                                 </a>
                                  <ul class="dropdown-menu">
                                      <li>
-                                        <a href="/campaigns">Campigns</a>
+                                        <a href="/campaigns">Campaigns</a>
                                     </li>
 
                                     <li>
@@ -110,7 +110,8 @@
     <script src="/js/app.js"></script>
     <script src="/js/selectize.min.js"></script>
     <script>
-    console.log(<?php echo $lists;?>);
+
+    @if(isset($campaign_id) && isset($lists))
     var $select = $('.cmp-lists').selectize({
         maxItems: null,
         valueField: 'id',
@@ -122,14 +123,16 @@
 
     var control = $select[0].selectize;
 
-    // sub-cmp-list
     $('.sub-cmp-list').on('click', function(e) {
+        console.log(control.items);
+
         e.preventDefault();
+
+
         $.ajax({
-            url: "/",
-            data: control.items,
-            type: 'GET',
-            dataType: 'json',
+            url: "/campaign-lists",
+            data: {ids: control.items, campaign_id: <?php echo $campaign_id;?>},
+            type: 'POST',
             error: function () {
 
             },
@@ -138,6 +141,7 @@
             }
         });
     });
+    @endif
     </script>
 </body>
 </html>
