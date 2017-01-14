@@ -35,3 +35,4 @@ Route::resource('list-contacts', 'ListContactsController');
 Route::resource('messages', 'MessagesController');
 Route::resource('templates', 'TemplatesController');
 Route::resource('campaigns', 'CampaignsController');
+Route::resource('campaign-lists', 'CampaignListsController');

@@ -60,6 +60,19 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="/campaigns">Campigns</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/contacts">Contacts</a>
+                                    </li>
+                                     <li>
+                                        <a href="/lists">Lists</a>
+                                    </li>
+                                     <li>
+                                        <a href="/templates">Templates</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
