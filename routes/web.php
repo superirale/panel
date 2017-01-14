@@ -36,3 +36,4 @@ Route::resource('messages', 'MessagesController');
 Route::resource('templates', 'TemplatesController');
 Route::resource('campaigns', 'CampaignsController');
 Route::resource('campaign-lists', 'CampaignListsController');
+Route::resource('members', 'MembersController');
