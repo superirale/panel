@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Contacts</div>
+                    <div class="panel-heading">Contacts <span class="pull-right"><a href="/contacts/import">Import CSV</a></span></div>
                     <div class="panel-body">
 
                         <a href="{{ url('/contacts/create') }}" class="btn btn-primary btn-xs" title="Add New Contact"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a>

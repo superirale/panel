@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
+use App\Contact;
 use \League\Csv\Writer;
 use \League\Csv\Reader;
 use Illuminate\Http\Request;
@@ -13,6 +13,11 @@ class FileController extends Controller
 	function __construct()
 	{
 		# code...
+	}
+
+	public function index()
+	{
+		return view('contacts.upload');
 	}
 
 	public function exportContacts()
@@ -52,6 +57,6 @@ class FileController extends Controller
 
 		    $count++;
 		}
-		return response()->json(['status' => 'success', 'data' => $saved]);
+		return redirect('contacts');;
 	}
 }
