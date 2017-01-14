@@ -24,6 +24,11 @@
 							        {!! $errors->first('file', '<p class="help-block">:message</p>') !!}
 							    </div>
 							</div>
+							<div class="form-group">
+							    <div class="col-md-offset-4 col-md-4">
+							        {!! Form::submit("Upload", ['class' => 'btn btn-primary']) !!}
+							    </div>
+							</div>
 						{!! Form::close() !!}
 
                     </div>
