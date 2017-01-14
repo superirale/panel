@@ -72,6 +72,9 @@
                                      <li>
                                         <a href="/templates">Templates</a>
                                     </li>
+                                    <li>
+                                        <a href="/messages">Messages</a>
+                                    </li>
                                  </ul>
                             </li>
                             <li class="dropdown">

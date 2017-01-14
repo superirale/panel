@@ -26,7 +26,7 @@
                                         <td>
                                             <a href="{{ url('/lists/' . $item->id) }}" class="btn btn-success btn-xs" title="View List"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
                                             <a href="{{ url('/lists/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit List"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
-                                            <a href="{{ url('/lists/' . $item->id . '/contacts') }}" class="btn btn-primary btn-xs" title="List Contacts"><span class="glyphicon glyphicon-user" aria-hidden="true"/></a>
+                                            <a href="{{ url('/lists/' . $item->id . '/contacts') }}" class="btn btn-primary btn-xs" title="Add Contacts"><span class="glyphicon glyphicon-user" aria-hidden="true"/></a>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
                                                 'url' => ['/lists', $item->id],
