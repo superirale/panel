@@ -26,6 +26,6 @@ Route::resource('services', 'ServicesController');
 Route::resource('user-services', 'UserServicesController');
 
 Route::get('/crm', 'CrmController@index');
-Route::resource('/api/contacts', 'ContactsController');
-
-// Route::get('/api/contacts', 'ContactsController@index');
+// Route::resource('/api/contacts', 'ContactsController');
+Route::resource('contacts', 'ContactsController');
+Route::resource('contacts/import', 'FileController@index');
