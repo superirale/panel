@@ -12,6 +12,8 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'campaign-lists'
+        'campaign-lists',
+        'campaign-template',
+        'campaign-message'
     ];
 }

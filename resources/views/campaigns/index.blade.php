@@ -25,8 +25,15 @@
                                         <td>{{ $item->name }}</td><td>{{ $item->schedule_date }}</td><td>{{ $item->type }}</td>
                                         <td>
                                             <a href="{{ url('/campaigns/' . $item->id) }}" class="btn btn-success btn-xs" title="View Campaign"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
+
                                             <a href="{{ url('/campaigns/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Campaign"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
+
                                             <a href="{{ url('/campaigns/' . $item->id . '/lists') }}" class="btn btn-warning btn-xs" title="Add Lists"><span class="glyphicon glyphicon-list" aria-hidden="true"/></a>
+
+                                            <a href="{{ url('/campaigns/' . $item->id . '/templates') }}" class="btn btn-success btn-xs" title="Choose Template"><span class="glyphicon glyphicon-list" aria-hidden="true"/></a>
+
+                                            <a href="{{ url('/campaigns/' . $item->id . '/message') }}" class="btn btn-info btn-xs" title="Choose Message"><span class="glyphicon glyphicon-list" aria-hidden="true"/></a>
+
                                             {!! Form::open([
                                                 'method'=>'DELETE',
                                                 'url' => ['/campaigns', $item->id],

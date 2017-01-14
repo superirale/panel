@@ -28,6 +28,7 @@
                                             <a href="{{ url('/contacts/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Contact"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
 
                                             <a href="{{ url('/contacts/' . $item->id . '/list') }}" class="btn btn-warning btn-xs" title="Add to Lists"><span class="glyphicon glyphicon-list" aria-hidden="true"/></a>
+
                                             {!! Form::open([
                                                 'method'=>'DELETE',
                                                 'url' => ['/contacts', $item->id],

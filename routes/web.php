@@ -23,7 +23,8 @@ Route::post('/upload', 'UploadController@ImageUpload');
 
 
 Route::get('campaigns/{campaign_id}/lists', 'CampaignListsController@index');
-Route::post('campaigns/{campaign_id}/lists', 'CampaignListsController@index');
+Route::get('campaigns/{campaign_id}/templates', 'CampaignTemplatesController@index');
+Route::get('campaigns/{campaign_id}/message', 'CampaignMessageController@index');
 
 
 Route::resource('images', 'ImagesController');

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\CampaignMessage;
 use Illuminate\Http\Request;
 use Session;
+use App\Campaign;
+use App\Message;
 
 class CampaignMessageController extends Controller
 {
@@ -16,22 +18,14 @@ class CampaignMessageController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index($campaign_id)
     {
-        $campaignmessage = CampaignMessage::paginate(25);
+        $messages = Message::pluck('name', 'id');
+        Campaign::findOrFail($campaign_id);
 
-        return view('campaign-message.index', compact('campaignmessage'));
+        return view('campaign-message.index', compact('messages', 'campaign_id'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('campaign-message.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,41 +41,15 @@ class CampaignMessageController extends Controller
 			'message_id' => 'required|integer'
 		]);
         $requestData = $request->all();
-        
+
         CampaignMessage::create($requestData);
 
         Session::flash('flash_message', 'CampaignMessage added!');
 
-        return redirect('campaign-message');
+        return redirect('campaigns');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $campaignmessage = CampaignMessage::findOrFail($id);
 
-        return view('campaign-message.show', compact('campaignmessage'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $campaignmessage = CampaignMessage::findOrFail($id);
-
-        return view('campaign-message.edit', compact('campaignmessage'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -98,7 +66,7 @@ class CampaignMessageController extends Controller
 			'message_id' => 'required|integer'
 		]);
         $requestData = $request->all();
-        
+
         $campaignmessage = CampaignMessage::findOrFail($id);
         $campaignmessage->update($requestData);
 

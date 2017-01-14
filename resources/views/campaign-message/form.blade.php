@@ -1,14 +1,10 @@
-<div class="form-group {{ $errors->has('campaign_id') ? 'has-error' : ''}}">
-    {!! Form::label('campaign_id', 'Campaign Id', ['class' => 'col-md-4 control-label']) !!}
+<input type="hidden" name="campaign_id" value="{{$campaign_id}}">
+<div class="form-group {{ $errors->has('message_id') ? 'has-error' : ''}}">
+    {!! Form::label('message_id', 'Message', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::number('campaign_id', null, ['class' => 'form-control', 'required' => 'required']) !!}
-        {!! $errors->first('campaign_id', '<p class="help-block">:message</p>') !!}
-    </div>
-</div><div class="form-group {{ $errors->has('mesage_id') ? 'has-error' : ''}}">
-    {!! Form::label('mesage_id', 'Mesage Id', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::number('mesage_id', null, ['class' => 'form-control']) !!}
-        {!! $errors->first('mesage_id', '<p class="help-block">:message</p>') !!}
+
+        {!! Form::select('message_id', $messages, null, ['class' => 'form-control', 'required' => 'required']) !!}
+        {!! $errors->first('message_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

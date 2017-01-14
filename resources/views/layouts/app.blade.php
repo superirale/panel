@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/selectize.bootstrap3.css" rel="stylesheet">
+    <link href="/css/select2.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -109,38 +110,41 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/js/selectize.min.js"></script>
+    <script src="/js/select2.min.js"></script>
     <script>
 
     @if(isset($campaign_id) && isset($lists))
-    var $select = $('.cmp-lists').selectize({
-        maxItems: null,
-        valueField: 'id',
-        labelField: 'name',
-        searchField: 'name',
-        options: <?php echo $lists;?>,
-        create: true
-    });
-
-    var control = $select[0].selectize;
-
-    $('.sub-cmp-list').on('click', function(e) {
-        console.log(control.items);
-
-        e.preventDefault();
-
-
-        $.ajax({
-            url: "/campaign-lists",
-            data: {ids: control.items, campaign_id: <?php echo $campaign_id;?>},
-            type: 'POST',
-            error: function () {
-
-            },
-            success: function () {
-
-            }
+        var $select = $('.cmp-lists').selectize({
+            maxItems: null,
+            valueField: 'id',
+            labelField: 'name',
+            searchField: 'name',
+            options: <?php echo $lists;?>,
+            create: true
         });
-    });
+
+        var control = $select[0].selectize;
+
+        $('.sub-cmp-list').on('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/campaign-lists",
+                data: {ids: control.items, campaign_id: <?php echo $campaign_id;?>},
+                type: 'POST',
+                error: function () {
+
+                },
+                success: function () {
+
+                }
+            });
+        });
+    @endif
+    @if(isset($campaign_id) && isset($templates))
+        $('select').select2();
+    @endif
+    @if(isset($campaign_id) && isset($messages))
+        $('select').select2();
     @endif
     </script>
 </body>

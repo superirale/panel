@@ -25,7 +25,7 @@ class CampaignMessage extends Model
      *
      * @var array
      */
-    protected $fillable = ['campaign_id', 'mesage_id'];
+    protected $fillable = ['campaign_id', 'message_id'];
 
-    
+
 }

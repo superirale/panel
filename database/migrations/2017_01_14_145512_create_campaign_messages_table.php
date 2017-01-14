@@ -15,7 +15,7 @@ class CreateCampaignMessagesTable extends Migration
         Schema::create('campaign_messages', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('campaign_id');
-            $table->integer('mesage_id');
+            $table->integer('message_id');
             $table->timestamps();
         });
     }

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\CampaignTemplate;
 use Illuminate\Http\Request;
 use Session;
+use App\Template;
+use App\Campaign;
 
 class CampaignTemplatesController extends Controller
 {
@@ -16,22 +18,14 @@ class CampaignTemplatesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index($campaign_id)
     {
-        $campaigntemplates = CampaignTemplate::paginate(25);
+        $templates = Template::pluck('name', 'id');
+        Campaign::findOrFail($campaign_id);
 
-        return view('campaign-templates.index', compact('campaigntemplates'));
+        return view('campaign-templates.index', compact('templates', 'campaign_id'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('campaign-templates.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,12 +41,13 @@ class CampaignTemplatesController extends Controller
 			'template_id' => 'required|integer'
 		]);
         $requestData = $request->all();
-        
+
+
         CampaignTemplate::create($requestData);
 
         Session::flash('flash_message', 'CampaignTemplate added!');
 
-        return redirect('campaign-templates');
+        return redirect('campaigns');
     }
 
     /**
@@ -98,7 +93,7 @@ class CampaignTemplatesController extends Controller
 			'template_id' => 'required|integer'
 		]);
         $requestData = $request->all();
-        
+
         $campaigntemplate = CampaignTemplate::findOrFail($id);
         $campaigntemplate->update($requestData);
 
