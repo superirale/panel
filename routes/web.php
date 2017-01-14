@@ -30,3 +30,4 @@ Route::get('contacts/import', 'FileController@index');
 Route::post('contacts/import', 'FileController@importContacts');
 Route::resource('contacts', 'ContactsController');
 ;
+Route::resource('lists', 'ListsController');
