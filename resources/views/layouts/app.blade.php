@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/selectize.bootstrap3.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -51,7 +52,6 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
-                            {{-- <li><a href="{{ url('/register') }}">Register</a></li> --}}
                         @else
                             <li><a href="/members">Members</a></li>
                             <li class="dropdown">
@@ -108,5 +108,36 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/selectize.min.js"></script>
+    <script>
+    console.log(<?php echo $lists;?>);
+    var $select = $('.cmp-lists').selectize({
+        maxItems: null,
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        options: <?php echo $lists;?>,
+        create: true
+    });
+
+    var control = $select[0].selectize;
+
+    // sub-cmp-list
+    $('.sub-cmp-list').on('click', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/",
+            data: control.items,
+            type: 'GET',
+            dataType: 'json',
+            error: function () {
+
+            },
+            success: function () {
+
+            }
+        });
+    });
+    </script>
 </body>
 </html>

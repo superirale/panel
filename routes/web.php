@@ -21,6 +21,11 @@ Auth::routes();
 Route::get('/home', 'UploadController@create');
 Route::post('/upload', 'UploadController@ImageUpload');
 
+
+Route::get('campaigns/{campaign_id}/lists', 'CampaignListsController@index');
+Route::post('campaigns/{campaign_id}/lists', 'CampaignListsController@index');
+
+
 Route::resource('images', 'ImagesController');
 Route::resource('services', 'ServicesController');
 Route::resource('user-services', 'UserServicesController');

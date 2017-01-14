@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\CampaignList;
 use Illuminate\Http\Request;
 use Session;
+use App\ContactList;
 
 class CampaignListsController extends Controller
 {
@@ -16,11 +17,11 @@ class CampaignListsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index($campagin_id)
     {
-        $campaignlists = CampaignList::paginate(25);
-
-        return view('campaign-lists.index', compact('campaignlists'));
+        $lists = ContactList::all()->toJson();
+        // dd($lists);
+        return view('campaign-lists.index', compact('lists'));
     }
 
     /**
@@ -47,7 +48,7 @@ class CampaignListsController extends Controller
 			'list_id' => 'required|integer'
 		]);
         $requestData = $request->all();
-        
+
         CampaignList::create($requestData);
 
         Session::flash('flash_message', 'CampaignList added!');
@@ -98,7 +99,7 @@ class CampaignListsController extends Controller
 			'list_id' => 'required|integer'
 		]);
         $requestData = $request->all();
-        
+
         $campaignlist = CampaignList::findOrFail($id);
         $campaignlist->update($requestData);
 
