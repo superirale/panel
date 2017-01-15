@@ -21,8 +21,8 @@ class CampaignMessageController extends Controller
     public function index($campaign_id)
     {
         $messages = Message::pluck('name', 'id');
-        Campaign::findOrFail($campaign_id);
-
+        $campaign = Campaign::with('message', 'templates', 'lists')->findOrFail($campaign_id);
+        dd($campaign);
         return view('campaign-message.index', compact('messages', 'campaign_id'));
     }
 
