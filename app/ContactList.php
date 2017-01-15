@@ -28,4 +28,10 @@ class ContactList extends Model
     protected $fillable = ['name'];
 
 
+    public function contacts()
+    {
+        return $this->belongsToMany('App\Contact', 'list_contacts', 'list_id', 'contact_id');
+    }
+
+
 }

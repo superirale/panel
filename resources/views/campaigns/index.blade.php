@@ -28,11 +28,13 @@
 
                                             <a href="{{ url('/campaigns/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Campaign"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
 
-                                            <a href="{{ url('/campaigns/' . $item->id . '/lists') }}" class="btn btn-warning btn-xs" title="Add Lists"><span class="glyphicon glyphicon-list" aria-hidden="true"/></a>
+                                            <a href="{{ url('/campaigns/' . $item->id . '/lists') }}" class="btn btn-warning btn-xs" title="Add Lists"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"/></a>
 
                                             <a href="{{ url('/campaigns/' . $item->id . '/templates') }}" class="btn btn-success btn-xs" title="Choose Template"><span class="glyphicon glyphicon-list" aria-hidden="true"/></a>
 
-                                            <a href="{{ url('/campaigns/' . $item->id . '/message') }}" class="btn btn-info btn-xs" title="Choose Message"><span class="glyphicon glyphicon-list" aria-hidden="true"/></a>
+                                            <a href="{{ url('/campaigns/' . $item->id . '/message') }}" class="btn btn-info btn-xs" title="Choose Message"><span class="glyphicon glyphicon-envelop" aria-hidden="true"/></a>
+
+                                            <a href="{{ url('/campaigns/' . $item->id . '/run') }}" class="btn btn-success btn-xs" title="Run Campaign"><span class="glyphicon glyphicon-envelope" aria-hidden="true"/></a>
 
                                             {!! Form::open([
                                                 'method'=>'DELETE',

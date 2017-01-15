@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Services;
-
+use GuzzleHttp\Client;
 
 class Service
 {
@@ -37,6 +37,11 @@ class Service
 	}
 
 	public function makeRequest($params)
+	{
+		# code...
+	}
+
+	public function makeAsynceRequest($params)
 	{
 		# code...
 	}

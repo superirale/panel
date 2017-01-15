@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Campaign;
 use Illuminate\Http\Request;
 use Session;
+use App\Jobs\SendSMS;
 
 class CampaignsController extends Controller
 {
@@ -47,7 +48,7 @@ class CampaignsController extends Controller
 			'type' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         Campaign::create($requestData);
 
         Session::flash('flash_message', 'Campaign added!');
@@ -98,7 +99,7 @@ class CampaignsController extends Controller
 			'type' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         $campaign = Campaign::findOrFail($id);
         $campaign->update($requestData);
 
@@ -121,5 +122,22 @@ class CampaignsController extends Controller
         Session::flash('flash_message', 'Campaign deleted!');
 
         return redirect('campaigns');
+    }
+
+    public function runCampaign($campaign_id)
+    {
+        $campaign = Campaign::with(['lists' => function ($q)
+        {
+            $q->with('contacts');
+        }, 'message', 'templates'])->findOrFail($campaign_id);
+
+        foreach ($campaign->lists as $list) {
+            foreach ($list->contacts as $contact) {
+
+                dispatch(new SendSMS($campaign, $contact));
+
+           }
+        }
+
     }
 }
