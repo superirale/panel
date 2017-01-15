@@ -134,8 +134,8 @@ class CampaignsController extends Controller
         foreach ($campaign->lists as $list) {
             foreach ($list->contacts as $contact) {
 
-                dispatch(new SendSMS($campaign, $contact));
-
+                $job = (new SendSMS($campaign, $contact))->onQueue('sms-sender');
+                dispatch($job);
            }
         }
 

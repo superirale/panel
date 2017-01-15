@@ -16,17 +16,16 @@ class SendSMS implements ShouldQueue
 
     protected $campaign;
     protected $contact;
-    protected $smsHandler;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Campaign $campaign, Contact $contact, SmsService $smsHandler)
+    public function __construct(Campaign $campaign, Contact $contact)
     {
         $this->campaign = $campaign;
         $this->contact = $contact;
-        $this->smsHandler = $smsHandler;
+
     }
 
     /**
@@ -36,7 +35,6 @@ class SendSMS implements ShouldQueue
      */
     public function handle()
     {
-
-        $this->smsHandler->send($this->campaign->message[0], $this->contact->phone);
+        (new SmsService)->send($this->campaign->message[0], $this->contact->phone);
     }
 }

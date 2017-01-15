@@ -1,13 +1,15 @@
 <?php
 namespace App\Http\Services;
 use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
 
 class Service
 {
 
+
 	function __construct()
 	{
-		// $this->key = $key;
+
 	}
 
 	public function formatNumber($phone, $dial_code)
@@ -25,13 +27,12 @@ class Service
 			if($count > 0){
 				$params_string .= "&";
 			}
-			$params_string .= "$key=$value";
+			$params_string .="$key=$value";
 
 			$count++;
 		}
 
-		$params_string .= "&access_key=$this->key";
-		$params_string .= "&key=$this->key";
+
 
 		return $params_string;
 	}
@@ -41,8 +42,8 @@ class Service
 		# code...
 	}
 
-	public function makeAsynceRequest($params)
+	public function makeAsyncRequest($type, $url, $base_uri, $data = [])
 	{
-		# code...
+		$promise = (new Client(['base_url' => $base_uri]))->requestAsync($type, $url, $data);
 	}
 }
