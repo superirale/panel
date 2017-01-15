@@ -139,5 +139,8 @@ class CampaignsController extends Controller
            }
         }
 
+        Session::flash('flash_message', 'Campaign started!');
+        return redirect('campaigns');
+
     }
 }
