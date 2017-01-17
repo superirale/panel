@@ -10,20 +10,22 @@ class SmsService extends Service
 	function __construct()
 	{
 		$this->url = "http://cloud.nuobjects.com/api/send/";
+		$this->base_uri = "http://cloud.nuobjects.com";
 	}
 
-	public function send($message, $phone)
+	public function send($message, $phone, $type)
 	{
 		$data = [
-			'msg' => $message->body,
-			'to' => $phone,
 			'user' => "superirale",
 			'pass' => "omokhudu",
-			'from' => 'Tushworks'
+			'msg' => urlencode($message->body),
+			'to' => $phone,
+			'from' => 'TushworksNG'
 		];
+
 		$params = $this->setParams($data);
 		$this->url .= $params;
 
-		$this->makeAsyncRequest("POST", $this->url, "http://cloud.nuobjects.com");
+		return $this->makeAsyncRequest($type, $this->url, $this->base_uri);
 	}
 }

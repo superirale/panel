@@ -9,6 +9,9 @@ use App\Campaign;
 use Illuminate\Http\Request;
 use Session;
 use App\Jobs\SendSMS;
+use App\Jobs\SendEmail;
+
+use App\Http\Services\SmsService;
 
 class CampaignsController extends Controller
 {
@@ -131,16 +134,44 @@ class CampaignsController extends Controller
             $q->with('contacts');
         }, 'message', 'templates'])->findOrFail($campaign_id);
 
-        foreach ($campaign->lists as $list) {
-            foreach ($list->contacts as $contact) {
 
-                $job = (new SendSMS($campaign, $contact))->onQueue('sms-sender');
-                dispatch($job);
-           }
+
+
+
+        if($campaign->type == "sms"){
+            $this->runSmsCampaign($campaign);
         }
+
+        if($campaign->type == "email"){
+            $this->runEmailCampaign($campaign);
+        }
+        //optimize
+        // https://laracasts.com/discuss/channels/laravel/sending-more-than-10000-sms
 
         Session::flash('flash_message', 'Campaign started!');
         return redirect('campaigns');
 
     }
+
+    private function runSmsCampaign($campaign)
+    {
+        foreach ($campaign->lists as $list) {
+            foreach ($list->contacts as $contact) {
+
+                $job = (new SendSMS($campaign, $contact, "GET"))->onQueue('sms-sender');
+                dispatch($job);
+           }
+        }
+    }
+
+    // public function runEmailCampaign($campaign)
+    // {
+        // foreach ($campaign->lists as $list) {
+        //     foreach ($list->contacts as $contact) {
+
+        //         $job = (new SendEmail($campaign, $contact))->onQueue('email-sender');
+        //         dispatch($job);
+        //    }
+        // }
+    // }
 }
