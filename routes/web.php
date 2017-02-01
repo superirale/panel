@@ -26,6 +26,7 @@ Route::get('campaigns/{campaign_id}/lists', 'CampaignListsController@index');
 Route::get('campaigns/{campaign_id}/templates', 'CampaignTemplatesController@index');
 Route::get('campaigns/{campaign_id}/message', 'CampaignMessageController@index');
 Route::get('campaigns/{campaign_id}/run', 'CampaignsController@runCampaign');
+Route::get('campaigns/{campaign_id}/list/{list_id}/remove', 'CampaignListsController@removeList');
 
 
 Route::resource('images', 'ImagesController');
@@ -36,7 +37,8 @@ Route::get('/crm', 'CrmController@index');
 Route::get('contacts/import', 'FileController@index');
 Route::post('contacts/import', 'FileController@importContacts');
 Route::resource('contacts', 'ContactsController');
-;
+// Route::get('contacts/{contact_id}/list', 'ContactListsController@index');
+
 Route::resource('lists', 'ContactListsController');
 Route::resource('list-contacts', 'ListContactsController');
 Route::resource('messages', 'MessagesController');

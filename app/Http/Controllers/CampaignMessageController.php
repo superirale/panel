@@ -22,7 +22,7 @@ class CampaignMessageController extends Controller
     {
         $messages = Message::pluck('name', 'id');
         $campaign = Campaign::with('message', 'templates', 'lists')->findOrFail($campaign_id);
-        dd($campaign);
+
         return view('campaign-message.index', compact('messages', 'campaign_id'));
     }
 
