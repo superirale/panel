@@ -48,7 +48,7 @@ class FileController extends Controller
 				$contact->first_name = $row[0];
 				$contact->last_name = $row[1];
 				$contact->sex = $row[2];
-				$contact->age = $row[3];
+				$contact->age = is_int($row[3])? $row[3]: null;
 				$contact->email = $row[4];
 				$contact->phone = $row[5];
 				$contact->address = $row[6];

@@ -85,6 +85,8 @@ namespace :deploy do
                 execute "chmod -R 777 #{release_path}/vendor"
                 execute "chmod -R 777 #{release_path}/public"
                 execute "php #{release_path}/artisan migrate"
+                execute "redis-server --daemonize yes"
+                execute "php artisan queue:work redis --queue=emails"
                 # execute "php #{release_path}/artisan cache:clear"
             end
         end
