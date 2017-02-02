@@ -15,14 +15,22 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th> First Name </th><th> Last Name </th><th> Email </th><th>Actions</th>
+                                        <th>ID</th>
+                                        <th> First Name </th>
+                                        <th> Last Name </th>
+                                        <th> Email </th>
+                                        <th> Phone </th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($contacts as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{ $item->email }}</td>
+                                        <td>{{ $item->first_name }}</td>
+                                        <td>{{ $item->last_name }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->phone }}</td>
                                         <td>
                                             <a href="{{ url('/contacts/' . $item->id) }}" class="btn btn-success btn-xs" title="View Contact"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
                                             <a href="{{ url('/contacts/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Contact"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
