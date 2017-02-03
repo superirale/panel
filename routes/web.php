@@ -34,8 +34,9 @@ Route::resource('services', 'ServicesController');
 Route::resource('user-services', 'UserServicesController');
 
 Route::get('/crm', 'CrmController@index');
-Route::get('contacts/import', 'FileController@index');
-Route::post('contacts/import', 'FileController@importContacts');
+Route::get('contacts/import/{contact_list_id?}', 'FileController@index');
+Route::post('contacts/import/{contact_list_id?}', 'FileController@importContacts');
+Route::post('contacts/name-import/{contact_list_id?}', 'FileController@nameFieldImport');
 Route::resource('contacts', 'ContactsController');
 // Route::get('contacts/{contact_id}/list', 'ContactListsController@index');
 

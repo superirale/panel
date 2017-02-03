@@ -14,6 +14,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         'campaign-lists',
         'campaign-template',
-        'campaign-message'
+        'campaign-message',
+        'contacts/name-import/*'
     ];
 }

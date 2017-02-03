@@ -16,7 +16,7 @@
                             </ul>
                         @endif
 
-                       	{!! Form::open(['url' => '/contacts/import', 'class' => 'form-horizontal', 'files' => true]) !!}
+                       	{!! Form::open(['url' => "/contacts/import/$contact_list_id", 'class' => 'form-horizontal', 'files' => true]) !!}
 							<div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
 							    {!! Form::label('file', 'File', ['class' => 'col-md-4 control-label']) !!}
 							    <div class="col-md-6">
