@@ -49,13 +49,13 @@ class Service
 	public function makeAsyncRequest($type, $url, $base_uri, $data = [])
 	{
 		// $promise = (new Client(['base_url' => $base_uri]))->requestAsync($type, $url, $data);
-
+		// $client = new Client();
 
 		$request = new \GuzzleHttp\Psr7\Request($type, $url, $data);
 
-		$promise = $client->sendAsync($request)->then(function ($response) {
-		    echo 'I completed! ' . $response->getBody();
-		});
+		// $promise = $client->sendAsync($request)->then(function ($response) {
+		//     echo 'I completed! ' . $response->getBody();
+		// });
 
 	}
 }
